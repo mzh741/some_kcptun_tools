@@ -56,7 +56,7 @@ except socket.error as msg:
 
 # create a raw socket
 try:
-    s_send_tcp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+    s_send_tcp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
 except socket.error as msg:
     print('Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
     sys.exit()
@@ -216,7 +216,7 @@ while True:
             source_address = socket.inet_aton(localIp)# '192.168.1.112'
             dest_address = socket.inet_aton(serverIp)
             placeholder = 0
-            protocol = socket.IPPROTO_TCP
+            protocol = socket.IPPROTO_IP
             tcp_length = len(tcp_header) + len(data)
 
             psh = pack(b'!4s4sBBH', source_address, dest_address, placeholder, protocol, tcp_length)
