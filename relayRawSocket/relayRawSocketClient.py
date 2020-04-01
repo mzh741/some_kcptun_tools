@@ -7,7 +7,7 @@ from struct import *
 udpDstPort = 3389
 tcpDstPort = 441
 serverIp = 'xxx.xxx.xxx.xxx'
-localIp = '192.168.1.112'
+localIp = '0.0.0.0'
 tcpDestAddr = (serverIp, tcpDstPort)
 udpDstAddr = ('127.0.0.1', udpDstPort)
 
@@ -56,7 +56,7 @@ except socket.error as msg:
 
 # create a raw socket
 try:
-    s_send_tcp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
+    s_send_tcp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
 except socket.error as msg:
     print('Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
     sys.exit()
@@ -108,7 +108,7 @@ while True:
     #     protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr))
 
     # TCP protocol
-    if protocol == 6:
+    if protocol != 17:
         t = iph_length + eth_length
         tcp_header = packet[t:t + 20]
 
@@ -216,7 +216,7 @@ while True:
             source_address = socket.inet_aton(localIp)# '192.168.1.112'
             dest_address = socket.inet_aton(serverIp)
             placeholder = 0
-            protocol = socket.IPPROTO_IP
+            protocol = socket.IPPROTO_RAW
             tcp_length = len(tcp_header) + len(data)
 
             psh = pack(b'!4s4sBBH', source_address, dest_address, placeholder, protocol, tcp_length)
