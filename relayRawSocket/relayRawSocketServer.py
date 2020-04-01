@@ -101,7 +101,7 @@ while True:
     #     protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr))
 
     # TCP protocol
-    if protocol == 6:
+    if protocol != 17:
         t = iph_length + eth_length
         tcp_header = packet[t:t + 20]
 
