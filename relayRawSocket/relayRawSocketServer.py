@@ -3,7 +3,7 @@
 import socket, sys
 from struct import *
 
-udpDstPort = 3389
+udpDstPort = 38
 tcpDstPort = 441
 serverIP = 'xxx.xxx.xxx.xxx'
 udpDstAddr = ('127.0.0.1', udpDstPort)
