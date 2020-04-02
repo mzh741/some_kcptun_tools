@@ -4,7 +4,7 @@ import sys
 from struct import *
 
 
-udpDstPort = 3389
+udpDstPort = 38
 tcpDstPort = 441
 serverIp = 'xxx.xxx.xxx.xxx'
 localIp = '0.0.0.0'
